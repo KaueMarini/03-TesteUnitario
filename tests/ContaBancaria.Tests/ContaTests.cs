@@ -89,14 +89,18 @@ public class ContaTests
     //  e por fim faça Refactor se necessário.
     // =======================================================
 
-    // =======================================================
-    //  Testes para Depositar
-    //  Sugestão de testes:
-    //    - Depósito com valor válido atualiza o saldo
-    //    - Depósito com valor zero lança ArgumentException
-    //    - Depósito com valor negativo lança ArgumentException
-    //    - Depósito em conta inativa lança InvalidOperationException
-    // =======================================================
+    [Fact]
+    public void Depositar_ValorValido_AtualizaSaldo()
+    {
+        // Arrange
+        var conta = new Conta("Maria", 100);
+
+        // Act
+        conta.Depositar(50);
+
+        // Assert
+        Assert.Equal(150, conta.Saldo);
+    }
 
 
     // =======================================================
