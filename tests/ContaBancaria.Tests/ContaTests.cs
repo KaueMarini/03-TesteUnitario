@@ -93,13 +93,13 @@ public class ContaTests
     public void Depositar_ValorValido_AtualizaSaldo()
     {
         // Arrange
-        var conta = new Conta("Maria", 100);
+        var conta = new Conta("Maria", 100m); // 'm' transforma em decimal
 
         // Act
-        conta.Depositar(50);
+        conta.Depositar(50m); // 'm' transforma em decimal
 
         // Assert
-        Assert.Equal(150, conta.Saldo);
+        Assert.Equal(150m, conta.Saldo); // Aqui estava o erro principal!
     }
 
 
