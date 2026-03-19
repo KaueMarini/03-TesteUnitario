@@ -111,6 +111,12 @@ public class ContaTests
         Assert.Equal(60m, conta.Saldo);
     }
 
+    [Fact]
+    public void Sacar_SaldoInsuficiente_LancaInvalidOperationException()
+    {
+        var conta = new Conta("Maria", 100m);
+        Assert.Throws<InvalidOperationException>(() => conta.Sacar(150m));
+    }
 
     // =======================================================
     //  Testes para Transferir
