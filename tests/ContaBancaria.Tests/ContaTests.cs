@@ -103,15 +103,13 @@ public class ContaTests
     }
 
 
-    // =======================================================
-    //  Testes para Sacar
-    //  Sugestão de testes:
-    //    - Saque com valor válido atualiza o saldo
-    //    - Saque com valor maior que saldo lança InvalidOperationException
-    //    - Saque com valor zero lança ArgumentException
-    //    - Saque com valor negativo lança ArgumentException
-    //    - Saque em conta inativa lança InvalidOperationException
-    // =======================================================
+    [Fact]
+    public void Sacar_ValorValido_AtualizaSaldo()
+    {
+        var conta = new Conta("Maria", 100m);
+        conta.Sacar(40m);
+        Assert.Equal(60m, conta.Saldo);
+    }
 
 
     // =======================================================
