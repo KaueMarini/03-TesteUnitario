@@ -127,15 +127,34 @@ public class ContaTests
         Assert.Throws<ArgumentException>(() => conta.Sacar(valorInvalido));
     }
 
-    // =======================================================
-    //  Testes para Transferir
-    //  Sugestão de testes:
-    //    - Transferência válida atualiza saldo de ambas as contas
-    //    - Transferência com saldo insuficiente lança exceção
-    //    - Transferência com valor zero/negativo lança exceção
-    //    - Transferência com conta origem inativa lança exceção
-    //    - Transferência com conta destino inativa lança exceção
-    // =======================================================
+    [Fact]
+    public void Transferir_ValorValido_AtualizaSaldoDeAmbasContas()
+    {
+        var origem = new Conta("Maria", 200m);
+        var destino = new Conta("Joao", 100m);
+        origem.Transferir(destino, 50m);
+
+        Assert.Equal(150m, origem.Saldo);
+        Assert.Equal(150m, destino.Saldo);
+    }
+
+    [Fact]
+    public void Transferir_SaldoInsuficiente_LancaInvalidOperationException()
+    {
+        var origem = new Conta("Maria", 100m);
+        var destino = new Conta("Joao", 100m);
+        Assert.Throws<InvalidOperationException>(() => origem.Transferir(destino, 150m));
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-50)]
+    public void Transferir_ValorZeroOuNegativo_LancaArgumentException(decimal valorInvalido)
+    {
+        var origem = new Conta("Maria", 100m);
+        var destino = new Conta("Joao", 100m);
+        Assert.Throws<ArgumentException>(() => origem.Transferir(destino, valorInvalido));
+    }
 
 
     // =======================================================
