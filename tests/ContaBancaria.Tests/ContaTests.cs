@@ -118,6 +118,15 @@ public class ContaTests
         Assert.Throws<InvalidOperationException>(() => conta.Sacar(150m));
     }
 
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-10)]
+    public void Sacar_ValorInvalido_LancaArgumentException(decimal valorInvalido)
+    {
+        var conta = new Conta("Maria", 100m);
+        Assert.Throws<ArgumentException>(() => conta.Sacar(valorInvalido));
+    }
+
     // =======================================================
     //  Testes para Transferir
     //  Sugestão de testes:
